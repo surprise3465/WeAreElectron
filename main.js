@@ -1,14 +1,10 @@
-// ./app/main.js
-
 //采用javascript严格模式
-//'use strict';
+'use strict';
 
 // 应用的控制模块
-const electron = require('electron');
-const app = electron.app;
+const path = require('path')
+const {app, BrowserWindow} = require('electron')
 
-// 创建原生浏览器窗口的模块
-const {BrowserWindow} = require('electron');
 var mainWindow = null;
 
 // 当所有窗口都关闭的时候退出应用
@@ -20,12 +16,22 @@ app.on('window-all-closed', function () {
 });
 
 function createWindow(){
-  mainWindow = new BrowserWindow({ width: 1024, height: 768 });
-  var n = 20;
-  console.log(n);
+
+  const windowOptions = {
+    width: 1024,
+    height: 758,
+    backgroundColor: 'FFFF00',
+    title: 'We Are Electron',
+    icon: 'pic.ico',
+    show:false,
+  }
+
+  mainWindow = new BrowserWindow(windowOptions);
 // 载入应用的 index.html
   mainWindow.loadURL('file://' + __dirname + '/index.html');
-
+  mainWindow.on('ready-to-show',function(){
+    mainWindow.show();
+  })
 // 打开开发工具
   //mainWindow.openDevTools();
 
