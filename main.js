@@ -3,7 +3,6 @@
 
 // 应用的控制模块
 const path = require('path');
-
 const {app, BrowserWindow} = require('electron');
 
 var mainWindow = null;
